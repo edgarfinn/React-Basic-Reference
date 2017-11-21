@@ -120,7 +120,7 @@ much the same as
   - Class components
 
 ### Functional components:
-Functional components are quite simply react components which are created from javascript functions. These are the most simple form of component, as they generally will behave the same regardless of user interaction, and as such, have no consideration for the app's "[state](State)";
+Functional components are quite simply react components which are created from javascript functions. These are the most simple form of component, as they generally will behave the same regardless of user interaction, and as such, have no consideration for the app's "[state](#state)";
 
 **~/src/components/hero/hero.js**:
 ```jsx

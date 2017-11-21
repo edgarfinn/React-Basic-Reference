@@ -4,7 +4,7 @@ This repo is intended to provide a quick reference to the key elements and funct
 
 Accessing the DOM
 ---
-Once your React App is compiled through Webpack and Babel, it is exported in a concentrated JS file (usually called ```bundle.js``` which needs to be able to access the DOM in order to render the App to the browser.
+Once your React App is compiled through Webpack and Babel, it is exported in a concentrated JS file (usually called ```bundle.js```) which needs to be able to access the DOM in order to render the App to the browser.
 
 - index.html file:
 

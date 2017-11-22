@@ -268,3 +268,65 @@ Whenever referencing javascript variables in JSX, the reference needs to be wrap
 ```jsx
 <h1>The value of input is: {this.state.term}</h1>
 ```
+### Downwards data flow
+Redux architecture revolves around a strict unidirectional data flow.
+
+Downwards data flow is therefore a popular principal, in which only the parent-most component in an application is responsible for fetching data, which can then be passed in a single direction downwards, to its child components.
+
+Parent-child relationships here more relative to the order of invocations in the ReactDOM.render() method. So if your ```<App />``` class component is the component being passed directly into ```ReactDOM.Render()``` in your ```index``` module, then the ```<App />``` component is essentially the parent-most component.
+
+Any child components invoked by ```<App />```, which in turn invoke more components then become 'parents' of those components they invoke.
+
+### Passing data through props
+Data can be passed from a parent (invoking) component to a child component through props like so:
+
+**~/index.js**:
+```js
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import YTSearch from 'youtube-api-search';
+import VideoList from './components/video_list';
+
+const API_KEY = 'abcdef12356789';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { videos: [] };
+    YTSearch({ key: API_KEY, term: 'surf boards'}, (videos) => { this.setState({ videos: videos })}
+    );
+  }
+
+  render() {
+    return (
+      <div>
+
+        <SearchBar />
+
+        // invoke an instance of VideoList and pass the state's videos object to it via props
+        <VideoList videos={this.state.videos} />
+
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<App />, document.querySelector('.container'));
+```
+The VideoList Component can then be accessed
+
+**~/src/components/video_list.js**:
+```jsx
+import React from 'react';
+
+const VideoList = (props) => {
+  return (
+    <ul>
+    {props.videos.length}
+    </ul>
+    );
+  };
+
+  export default VideoList;
+  ```

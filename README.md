@@ -347,7 +347,7 @@ Any child components invoked by that component, which in turn invoke more compon
 ### Passing data through props
 Data can be passed from a parent (invoking) component to a child component by defining values within the component invocation
 ```<ChildComponent myProperty="value" />```
-and access then accessed by the child component through the ```props``` argument: ```const ChildComponent = (props)=> {<p>{props.myProperty}</p>}
+and access then accessed by the child component through the ```props``` argument: ```const ChildComponent = (props)=> {<p>{props.myProperty}</p>}```
 
 ```jsx
 const Child = (props)=> {

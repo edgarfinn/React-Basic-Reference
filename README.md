@@ -234,7 +234,7 @@ class App extends React.Component {
     )
   }
 }
-// Render the <App /> component, and of its (child) invocations
+// Render the <App /> component, and all of its (child) component invocations
 ReactDOM.render(
   <App />,
   document.getElementById('root')

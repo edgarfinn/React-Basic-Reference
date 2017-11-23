@@ -350,9 +350,6 @@ Data can be passed from a parent (invoking) component to a child component by de
 and accessed by the child component through the ```props``` argument: ```const ChildComponent = (props)=> {<p>{props.myProperty}</p>}```
 
 ```jsx
-const Child = (props)=> {
-  return <h1>{props.greeting}</h1>
-}
 
 class Parent extends React.Component {
   constructor(props) {
@@ -361,10 +358,16 @@ class Parent extends React.Component {
 
   render() {
     return (
-      // Invoke an instance of the Child component, passing a 'greeting' property to props 
+      // Invoke an instance of the Child component, passing a 'greeting' property to props
       <Child greeting="Hello World!" />
     )
   }
+}
+
+const Child = (props)=> {
+  // Access the greeting property through props.
+  // remember JS referenced within JSX needs to be wrapped in curlies.
+  return <h1>{props.greeting}</h1>
 }
 
 ReactDOM.render(
@@ -424,3 +427,81 @@ const VideoList = (props) => {
 
   export default VideoList;
   ```
+
+  In functional components, the props object needs to be passed in as an argument in order to be accessible to that function:
+  ```js
+  const Component = (props) => {<p>{props.stuff}</p>}
+  ```
+In class components props is automatically inherited as a pre-defined property of the Component class, and accessed using ```this.props```.
+
+So whenever re-factoring a component from a function to a class, remember to update any reference to props from ```props.stuff``` to ```this.props.stuff```.
+
+### Rendering arrays of components
+
+You can create arrays of JSX components and pass them into React to render. React will recognise it as a list of components and traverse the array rendering each element.
+
+In order to identify specific elements in an array being rendered, react requires each JSX element to have a set ```key``` property in its props, with a value which is unique to that element.
+
+This only needs to be set within the component invocation. ```<List item key={this.props.uniqueDataTag} />```. You dont have to set it in the definition of that component.
+
+```JSX
+class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+  // pre-define state with a list of data objects   
+    this.state = {
+      ApiDataList: [
+        {dataId:1,information:"item one", infoLabel:"a"},
+        {dataId:2,information:"item two", infoLabel:"b"},
+        {dataId:3,information:"item three", infoLabel:"c"}
+      ]
+    };
+  }
+
+  render() {
+    return (
+      // invoke list and pass a props.dataList argument
+      <List dataList={this.state.ApiDataList}/>
+    )
+  }
+}
+
+// List takes props from App
+const List = (props) => {
+// DataItems returns an array of JSX ListItem elements
+// Each with its own unique 'key', which is seemingly invisible to the DOM
+// And each comes with its own information taken different objects from iteration through the data list
+  const DataItems = props.dataList.map((item) => {
+    return (
+      <ListItem
+        key={item.dataId}
+        dataMessage={item.information}
+        label={item.infoLabel}
+      />
+    )
+  })
+
+  return (
+    <ul>
+      {DataItems}
+    </ul>
+  );
+};
+// ListItem takes props from List
+const ListItem = (props) => {
+  const message = props.dataMessage;
+  const label = props.label;
+  return (
+    <li>
+      <h1>{label}</h1>
+      <h2>{message}</h2>
+    </li>
+  )
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+```

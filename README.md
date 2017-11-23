@@ -278,11 +278,11 @@ A controlled component has its ```value``` set by state. As demonstrated above, 
 
 2) The text entry triggers the onChange event handler.
 
-3) The onChange event handler updates the component's state using ```setState()``` to the value of the event's target (event.target.value).
+3) The onChange event handler updates the component's state using ```setState()``` to the value of the event's target ```(event.target.value)```.
 
-4) setState is called, causing the component to immediately re-render (as well as any child components, remember)
+4) ```setState()``` is called, causing the component to immediately re-render (as well as any child components, remember)
 
-5) The element is re-rendered, this time with ```state.term```'s value pre-set to whatever the user's input. So the input component's value is now initialised to the value of ```this.state.term```, which is equal to the text entered in 1).
+5) The element is re-rendered, this time with ```state.term```'s value pre-set to the user's text input. So the input component's value is now initialised to the value of ```this.state.term```, which is equal to the text entered in 1).
 
 #### Referencing javascript variables in JSX
 Whenever referencing javascript variables in JSX, the reference needs to be wrapped in curly braces like so:
@@ -294,7 +294,7 @@ Redux architecture revolves around a strict unidirectional data flow.
 
 Downwards data flow is therefore a popular principal, in which only the parent-most component in an application is responsible for fetching data, which can then be passed in a single direction downwards, to its child components.
 
-Parent-child relationships here more relative to the order of invocations in the ReactDOM.render() method. So if your ```<App />``` class component is the component being passed directly into ```ReactDOM.Render()``` in your ```index``` module, then the ```<App />``` component is essentially the parent-most component.
+Parent-child relationships here are relative to the DOM tree, and therefore the order of invocations in the ReactDOM.render() method. So if your ```<App />``` class component is the component being passed directly into ```ReactDOM.Render()``` in your ```index``` module, then the ```<App />``` component is essentially the parent-most component.
 
 Any child components invoked by ```<App />```, which in turn invoke more components then become 'parents' of those components they invoke.
 

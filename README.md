@@ -2,35 +2,12 @@
 
 This repo is intended to provide a quick reference to the key elements and functionalities of React.
 
-Accessing the DOM
----
-Once your React App is compiled through Webpack and Babel, it is exported in a concentrated JS file (usually called ```bundle.js```) which needs to be able to access the DOM in order to render the App to the browser.
-
-- index.html file:
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/style/style.css">
-</head>
-<body>
-  <div class="container"></div>
-  <!-- provides a target that React can use to channel the app through -->
-</body>
-<script src="/bundle.js"></script>
-<!-- contains the compiled react app,
-and can access the DOM via elements in the body -->
-</html>
-
-```
-
 ## Setting up your app modules
-This section assumes webpack and babel are configured. For information on webpack and babel configuration for react, read:
+This document assumes webpack and babel are configured. For information on webpack and babel configuration for react, read:
 - [Webpack documentation](https://webpack.js.org/)
 - [Babel Documentation](https://babeljs.io/docs/setup/#installation)
 - or [follow this tutorial](https://scotch.io/tutorials/setup-a-react-environment-using-webpack-and-babel)
+
 
 ```
 My React Project
@@ -43,7 +20,7 @@ My React Project
 ``` html
 <body>
   <div class="container">
-    <!-- Any react compontns will be rendered to here -->
+    <!-- Any react components will be rendered to here -->
   </div>
 </body>
 <script src="/bundle.js"></script>
@@ -65,8 +42,31 @@ ReactDOM.render(<Hello />,document.querySelector('.container');
 
 ```
 
+Accessing the DOM
+---
+Once your React App is compiled through Webpack and Babel, it is exported into a concentrated JS file (usually called ```bundle.js```) which needs to be able to access the DOM in order to render the App to the browser.
+
+- index.html file:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+  <div class="container"></div>
+  <!-- provides a target that React can use to channel the app through -->
+</body>
+<script src="/bundle.js"></script>
+<!-- contains the compiled react app, and can access the DOM via elements in the body -->
+</html>
+
+```
+
 #### Keep It Modular
-In order to keep your app easily testable, its important to keep everything functional modular.
+In order to keep your app easily testable, it helps to keep everything modular and functional.
 Any module should be creating just one element / component.
 
 Keep one JS file per module, and file these under a ```src/``` folder in the root directory (or better still, file it them under ```src/components/``` in the root directory of your app, and create sub-folders within components for each individual module and its respective purpose / functionality.
@@ -85,6 +85,16 @@ My React Project
     index.js
   index.html
 ```
+You may also find it helps to give the parent-most element of any component a class name which reflects the name of the component, so that you can keep one CSS file to each component:
+
+**~/src/components/content/hero.js**:
+
+```JSX
+<section className="hero">
+  stuff
+</section>
+```
+
 #### Importing and Exporting for modular architecture
 
 #### Importing:

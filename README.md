@@ -141,7 +141,7 @@ much the same as its ES5 equivalent:
   - Class components
 
 ### Functional components:
-Functional components are quite simply react components which are created from javascript functions. These are the most simple form of component, as they generally will behave the same regardless of user interaction, and as such, have no consideration for the app's "[state](#state)";
+Functional components are quite simply react components which are created from javascript functions. These are the most simple form of component, as they generally will behave the same regardless of user interaction, and as such, have no consideration for the app's [state](#state);
 
 **~/src/components/hero/hero.js**:
 ```jsx
@@ -153,7 +153,7 @@ const HeroHeader = (props) => {
     );
   };
 
-  export default HeroHeader;
+export default HeroHeader;
   ```
 
 This component can then be imported into our index module like so:
@@ -180,7 +180,7 @@ ReactDOM.render(<App />, document.querySelector('.container'));
 ```
 
 ### Class Components:
-Class components are sub-classes of the React.Component class, written using the [ES6 class keyword](https://github.com/edgarfinn/ES6-OOP#defining-classes-with-es6).
+Class components are sub-classes of the React.Component class, written using the [ES6 class keyword](https://github.com/edgarfinn/ES6-OOP#defining-classes-with-es6). As sub-classes of the React.Component class, all class modules inherit React.Component's properties, but can also override certain properties or methods (such as the constructor method).
 
 ```jsx
 /* expose the Component class in the scope of the module  */
@@ -198,12 +198,12 @@ class HeroHeader extends Component {
 export default HeroHeader;
 ```
 
-If you require a component to have any consideration for the app's state you will need the component to be a class component. Unless you absolutely certain added functionalities, such as updating the DOM, or access to the app's state, then its generally best to default to using functional components.
+If you require a component to have any consideration for the app's state you will need the component to be a class component. Unless you really need added functionalities, such as updating the app's state or the DOM, then its generally best to default to using functional components.
 
 ### State
-State is a plain javascript object which is used to **record** and **react** to user events. Each class-based component has its own state.
+State is a plain javascript object which is used to **record** and **react** to user events. Each class-based component has its own component-level state. (Not to be confused with application-level state).
 
-Whenever a component's state is changed, the component immediately re-renders, and forces any of its child components to re-render as well.
+Whenever a component's state is changed, the component immediately re-renders, and causes any of its child components to re-render as well.
 
 Whenever making use of state in a component, the state object must first be initialised inside the class' [constructor() method](https://github.com/edgarfinn/ES6-OOP#constructor).
 
@@ -228,12 +228,12 @@ class Hero extends Component {
 export default Hero;
 ```
 
-Once there is key: value pair defined in a component's state (such as ```greeting``` above), this value can be accessed from elsewhere within the component using ```this.state.keyName```.
+Once there is a key->value pair defined in a component's state (such as ```greeting``` above), this value can be accessed from elsewhere within the component using ```this.state.keyName```.
 
 You can see that the code previously defined by the functional component has now been morphed into the ```render()``` method of the class component.
 
 ### Setting State
-Once state is initialised in the constructor function, you can use event handlers to update state to a user's input data, using an inline ES6 arrow function for an event handler.
+Once state is initialised in the constructor function, you can use the ```setState()``` method to update state properties to the value of a user's input data, using an inline ES6 arrow function for an event handler.
 
 ```jsx
 import React, {Component} from 'react';

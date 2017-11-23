@@ -233,7 +233,7 @@ Once there is a key->value pair defined in a component's state (such as ```greet
 You can see that the code previously defined by the functional component has now been morphed into the ```render()``` method of the class component.
 
 ### Setting State
-Once state is initialised in the constructor function, you can use the ```setState()``` method to update state properties to the value of a user's input data, using an inline ES6 arrow function for an event handler.
+Once state is initialised, you can use the ```setState()``` method to update state properties to the value of a user's input data, using an inline ES6 arrow function for an event handler.
 
 ```jsx
 import React, {Component} from 'react';
@@ -270,7 +270,7 @@ export default SearchBar;
 Every time a user enters data into the above input field, the event handler is triggered, which calls the ```setState()``` method.
 
 ### Controlled Components
-A controlled component has its ```value``` set by state. As demonstrated above, you can see that the input component's value is set to the ```state.term``` variable, which is initialised as ```''```.
+A controlled component has its ```value``` set by state. As demonstrated above, you can see that the ```<input />``` component's value is set to the ```state.term``` variable, which is initialised as ```''```.
 
 #### Sequence of events here:
 

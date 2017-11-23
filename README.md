@@ -361,6 +361,7 @@ class Parent extends React.Component {
 
   render() {
     return (
+      // Invoke an instance of the Child component, passing a 'greeting' property to props 
       <Child greeting="Hello World!" />
     )
   }

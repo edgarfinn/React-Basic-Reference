@@ -327,7 +327,7 @@ A controlled component has its ```value``` set by state. As demonstrated above, 
 
 4) ```setState()``` is called, causing the component to immediately re-render (as well as any child components, remember)
 
-5) The element is re-rendered, this time with ```state.term```'s value pre-set to the user's text input. So the <input /> component's value is now initialised to the value of ```this.state.term```, which is equal to the text entered in 1).
+5) The element is re-rendered, this time with ```state.term```'s value pre-set to the user's text input. So the ```<input />``` component's value is now initialised to the value of ```this.state.term```, which is equal to the text entered in 1).
 
 #### Referencing javascript variables in JSX
 Whenever referencing javascript variables in JSX, the reference needs to be wrapped in curly braces like so:
@@ -345,7 +345,9 @@ Reminder: Parent-child relationships in react are relative to the DOM tree, and 
 Any child components invoked by that component, which in turn invoke more components then become 'parents' of those components they invoke.
 
 ### Passing data through props
-Data can be passed from a parent (invoking) component to a child component through props like so:
+Data can be passed from a parent (invoking) component to a child component by defining values within the component invocation
+```<ChildComponent myProperty="value" />```
+and access then accessed by the child component through the ```props``` argument: ```const ChildComponent = (props)=> {<p>{props.myProperty}</p>}
 
 ```jsx
 const Child = (props)=> {

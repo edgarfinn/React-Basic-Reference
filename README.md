@@ -327,7 +327,7 @@ A controlled component has its ```value``` set by state. As demonstrated above, 
 
 4) ```setState()``` is called, causing the component to immediately re-render (as well as any child components, remember)
 
-5) The element is re-rendered, this time with ```state.term```'s value pre-set to the user's text input. So the ```<input />``` component's value is now initialised to the value of ```this.state.term```, which is equal to the text entered in 1).
+5) The element is re-rendered, this time with ```state.term```'s value pre-set to the user's text input. So the ```<input />``` component's value is now initialised to the value of ```this.state.term```, which is equal to the text entered in 1).
 
 #### Referencing javascript variables in JSX
 Whenever referencing javascript variables in JSX, the reference needs to be wrapped in curly braces like so:

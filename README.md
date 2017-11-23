@@ -200,6 +200,51 @@ export default HeroHeader;
 
 If you require a component to have any consideration for the app's state you will need the component to be a class component. Unless you really need added functionalities, such as updating the app's state or the DOM, then its generally best to default to using functional components.
 
+### Invoking Components
+
+Once a component has been defined, it is rendered to the DOM through JSX invocations. In JSX, invoking a function or class component is done using chevrons like so:
+```jsx
+// Define component
+const Greeting = () => {
+  return <h1>Hello, world!</h1>
+}
+
+ReactDOM.render(
+  <Greeting />,
+  document.getElementById('root')
+);
+
+```
+By invoking an instance of a component in another component's ```render()``` method, and passing it up the chain of invocations to the ReactDOM.render() method, you are telling ReactDOM to render all components invoked in that chain:
+
+```jsx
+// Define a (child) Greeting component
+const Greeting = () => {
+  return <h1>Hello, world!</h1>
+}
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)    
+  }
+  render() {
+    return (
+      // invoke the Greeting component
+      <Greeting />
+    )
+  }
+}
+// Render the <App /> component, and of its (child) invocations
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+```
+
+In React, parent-child relationships here are relative to the DOM tree, and therefore the order of invocations in the ReactDOM.render() method. So whichever component is being passed directly into ReactDOM.Render() in your index module, is essentially the parent-most component.
+
+Above, ```Greeting``` is a child component of ```App```
+
 ### State
 State is a plain javascript object which is used to **record** and **react** to user events. Each class-based component has its own component-level state. (Not to be confused with application-level state).
 
@@ -289,12 +334,13 @@ Whenever referencing javascript variables in JSX, the reference needs to be wrap
 ```jsx
 <h1>The value of input is: {this.state.term}</h1>
 ```
+
 ### Downwards data flow
 Redux architecture revolves around a strict unidirectional data flow.
 
 Downwards data flow is therefore a popular principal, in which only the parent-most component in an application is responsible for fetching data, which can then be passed in a single direction downwards, to its child components.
 
-Parent-child relationships here are relative to the DOM tree, and therefore the order of invocations in the ReactDOM.render() method. So if your ```<App />``` class component is the component being passed directly into ```ReactDOM.Render()``` in your ```index``` module, then the ```<App />``` component is essentially the parent-most component.
+Parent-child relationships here are relative to the DOM tree, and therefore the order of invocations in the ReactDOM.render() method. So if your ```<App />``` class component is being passed directly into ```ReactDOM.Render()``` in your ```index``` module, then its essentially the parent-most component.
 
 Any child components invoked by ```<App />```, which in turn invoke more components then become 'parents' of those components they invoke.
 

@@ -71,7 +71,7 @@ Any module should be creating just one element / component.
 
 Keep one JS file per module, and file these under a ```src/``` folder in the root directory (or better still, file it them under ```src/components/``` in the root directory of your app, and create sub-folders within components for each individual module and its respective purpose / functionality.
 
-You should then have one central JS file which pulls all these components together (commonly named ```index.js``` or ```app.js```)
+You should then have one central JS file in the root of the ```src/``` folder, which pulls all these components together (commonly named ```index.js``` or ```app.js```)
 ```
 My React Project
   src/

@@ -451,7 +451,8 @@ class App extends React.Component {
 
   constructor(props) {
     super(props)
-  // pre-define state with a list of data objects   
+  // pre-define state with a list of data objects
+  // This is the core data which is serving each item in the list
     this.state = {
       ApiDataList: [
         {dataId:1,information:"item one", infoLabel:"a"},

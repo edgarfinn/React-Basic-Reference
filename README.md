@@ -444,6 +444,8 @@ In order to identify specific elements in an array being rendered, react require
 
 This only needs to be set within the component invocation. ```<List item key={this.props.uniqueDataTag} />```. You dont have to set it in the definition of that component.
 
+You can see this mini-app in action by copying the contents into the javascript field of [this React CodePen](https://codepen.io/gaearon/pen/rrpgNB?editors=0010)
+
 ```JSX
 class App extends React.Component {
 

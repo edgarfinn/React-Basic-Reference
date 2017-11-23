@@ -241,9 +241,9 @@ ReactDOM.render(
 );
 ```
 
-In React, parent-child relationships here are relative to the DOM tree, and therefore the order of invocations in the ReactDOM.render() method. So whichever component is being passed directly into ReactDOM.Render() in your index module, is essentially the parent-most component.
+In React, parent-child relationships are relative to the DOM tree, and therefore the order of invocations in the ReactDOM.render() method. So whichever component is being passed directly into ReactDOM.Render() in your index module, is essentially the parent-most component.
 
-Above, ```Greeting``` is a child component of ```App```
+Above, the ```Greeting``` is a child component of ```App```
 
 ### State
 State is a plain javascript object which is used to **record** and **react** to user events. Each class-based component has its own component-level state. (Not to be confused with application-level state).
@@ -297,7 +297,7 @@ class SearchBar extends Component {
       <div>
         <input
           placeholder = { 'search' }
-          // write an event handler for input going into the searchbar
+          // write an event handler for text entered into the searchbar
           // use setState() to set the state's 'term' value to the user's input
           onChange = { (event) => this.setState({term: event.target.value})}
 
@@ -327,7 +327,7 @@ A controlled component has its ```value``` set by state. As demonstrated above, 
 
 4) ```setState()``` is called, causing the component to immediately re-render (as well as any child components, remember)
 
-5) The element is re-rendered, this time with ```state.term```'s value pre-set to the user's text input. So the input component's value is now initialised to the value of ```this.state.term```, which is equal to the text entered in 1).
+5) The element is re-rendered, this time with ```state.term```'s value pre-set to the user's text input. So the <input /> component's value is now initialised to the value of ```this.state.term```, which is equal to the text entered in 1).
 
 #### Referencing javascript variables in JSX
 Whenever referencing javascript variables in JSX, the reference needs to be wrapped in curly braces like so:
@@ -340,12 +340,35 @@ Redux architecture revolves around a strict unidirectional data flow.
 
 Downwards data flow is therefore a popular principal, in which only the parent-most component in an application is responsible for fetching data, which can then be passed in a single direction downwards, to its child components.
 
-Parent-child relationships here are relative to the DOM tree, and therefore the order of invocations in the ReactDOM.render() method. So if your ```<App />``` class component is being passed directly into ```ReactDOM.Render()``` in your ```index``` module, then its essentially the parent-most component.
+Reminder: Parent-child relationships in react are relative to the DOM tree, and therefore the order of invocations in the ReactDOM.render() method. So whichever component is being passed into the ReactDOM.render() method is essentially the parent-most component.
 
-Any child components invoked by ```<App />```, which in turn invoke more components then become 'parents' of those components they invoke.
+Any child components invoked by that component, which in turn invoke more components then become 'parents' of those components they invoke.
 
 ### Passing data through props
 Data can be passed from a parent (invoking) component to a child component through props like so:
+
+```jsx
+const Child = (props)=> {
+  return <h1>{props.greeting}</h1>
+}
+
+class Parent extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+      <Child greeting="Hello World!" />
+    )
+  }
+}
+
+ReactDOM.render(
+  <Parent />,
+  document.getElementById('root')
+);
+```
 
 **~/index.js**:
 ```js

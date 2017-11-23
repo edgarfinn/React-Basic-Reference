@@ -98,7 +98,7 @@ You may also find it helps to give the parent-most element of any component a cl
 #### Importing and Exporting for modular architecture
 
 #### Importing:
-Importing exposes modules from elsewhere in your app (OR from node) into a file.
+Importing a module from elsewhere exposes it to the scope of aanother module or file. You may need to import node modules such as React or ReactDOM, or your own custom modules, like 'header' or 'nav-bar'.
 
 ```import React from 'react';``` (ES6)
 
@@ -106,19 +106,30 @@ Importing exposes modules from elsewhere in your app (OR from node) into a file.
 
  ```var React = require('react')``` (ES5)
 
-When importing your own modules, you have to provide the absolute file path, like so:
+When importing your own custom modules, you have to provide the absolute file path, like so:
 
 ```js
 import Hero from './components/hero/hero';
 ```
 #### Exporting:
-Exporting mounts a module to the centre of your app, making it possible to be imported elsewhere:
+Exporting modules exposes their code to a global space in your app, where can be imported by other modules. But it must be imported in order to be used elsewhere, and cannot be imported to another module until it is first exported:
 
-```export default myCode;``` (ES6)
+(ES6):
+```jsx
+const myCode = () => {
+  return (
+    ...
+    )
+}
 
-much the same as
+// expose myCode to the rest of the app
+export default myCode;
 
-```module.exports = myCode; ```(ES5)
+```
+
+much the same as its ES5 equivalent:
+
+```module.exports = myCode; ```
 
 
 ## [Components](https://reactjs.org/docs/components-and-props.html)

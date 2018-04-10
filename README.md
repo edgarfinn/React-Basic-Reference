@@ -38,8 +38,7 @@ class Hello extends React.Component {
   }
 }
 
-ReactDOM.render(<Hello />,document.querySelector('.container');
-
+ReactDOM.render(<Hello />, document.getElementById('.container'));
 ```
 
 Accessing the DOM
